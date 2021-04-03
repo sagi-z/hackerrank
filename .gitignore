@@ -2,4 +2,6 @@
 **/*~
 **/*.swp
 .onetags.json
-
+**/build*/
+**/.cache/
+**/compile_commands.json
