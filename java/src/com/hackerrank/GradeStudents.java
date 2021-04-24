@@ -1,4 +1,5 @@
-package com.hackerrank.gradestudents;
+package com.hackerrank;
+// https://www.hackerrank.com/challenges/grading/problem
 
 import java.io.*;
 import java.math.*;
@@ -12,7 +13,7 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-class Result {
+class GradeStudentsResult {
 
     /*
      * Complete the 'gradingStudents' function below.
@@ -40,7 +41,7 @@ class Result {
 
 }
 
-public class Solution {
+public class GradeStudents {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
@@ -58,7 +59,7 @@ public class Solution {
             .map(Integer::parseInt)
             .collect(toList());
 
-        List<Integer> result = Result.gradingStudents(grades);
+        List<Integer> result = GradeStudentsResult.gradingStudents(grades);
 
         bufferedWriter.write(
             result.stream()

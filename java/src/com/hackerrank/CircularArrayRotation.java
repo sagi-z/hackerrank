@@ -1,4 +1,4 @@
-package com.hackerrank.circulararrayrotation;
+package com.hackerrank;
 // https://www.hackerrank.com/challenges/circular-array-rotation/problem
 
 import java.io.*;
@@ -13,7 +13,7 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-class Result {
+class CircularArrayRotationResult {
 
     /*
      * Complete the 'circularArrayRotation' function below.
@@ -27,20 +27,24 @@ class Result {
 
 	public static List<Integer> circularArrayRotation(List<Integer> a, int k, List<Integer> queries) {
 		// Write your code here
+		// 1. Go back k%a.size() places (modulo to keep the math in a.size() range)
+		// 2. Now the result can be zero/positive/negative, but java does not support negative indexes,
+		//  so use a.size() as a symmetrical point to add to zero/negative/positive number and take the modulo of it:
+		//  [][][] [][][]
+		// <------+------>
+		//  back    fwd
+		//  index   index
 		return queries.stream()
 				.map(i -> {
-					// FIXME
-					return a.get((i - k + a.size()) % a.size());
+					return a.get((i - k % a.size() + a.size()) % a.size());
 				}).collect(toList());
-
     }
 
 }
 
-public class Solution {
+public class CircularArrayRotation {
     public static void main(String[] args) throws IOException {
-//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("/tmp/input.txt"));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
@@ -66,7 +70,7 @@ public class Solution {
             .map(Integer::parseInt)
             .collect(toList());
 
-        List<Integer> result = Result.circularArrayRotation(a, k, queries);
+        List<Integer> result =  CircularArrayRotationResult.circularArrayRotation(a, k, queries);
 
         bufferedWriter.write(
             result.stream()
